@@ -1,4 +1,5 @@
 export default {
-  primary: '#FFF',
-  secondary: '#132020',
+  primary: '#132020',
+  secondary: '#1B8988',
+  defaultBackGround: '#fff',
 };
