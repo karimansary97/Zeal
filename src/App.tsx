@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import MainNavigation from './navigation/MainNavigation';
 import {PersistQueryClientProvider} from '@tanstack/react-query-persist-client';
 import appQueryClient, {asyncStoragePersister} from './config/appQueryClient';
+
 const App = () => {
   return (
     <PersistQueryClientProvider
