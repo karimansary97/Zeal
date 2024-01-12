@@ -7,11 +7,6 @@ import EndPoints from '../apis/EndPoints';
 type TestingProps = {};
 
 const Testing: FC<TestingProps> = props => {
-  const {data} = useGetQuery({
-    queryKey: ['kareem'],
-    endPoint: EndPoints.users,
-  });
-
   return (
     <View style={styles.container}>
       <Test />
