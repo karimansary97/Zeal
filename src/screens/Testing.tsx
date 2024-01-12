@@ -1,16 +1,14 @@
 import React, {FC} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {Test} from '../styles/icons';
-import {useGetQuery} from '../hooks/useGetQuery';
-import EndPoints from '../apis/EndPoints';
+import Layout from '../components/UIELements/Layout';
 
 type TestingProps = {};
 
 const Testing: FC<TestingProps> = props => {
   return (
-    <View style={styles.container}>
-      <Test />
-    </View>
+    <Layout>
+      <Text>kareem</Text>
+    </Layout>
   );
 };
 
