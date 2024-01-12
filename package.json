@@ -1,5 +1,5 @@
 {
-  "name": "Zeal",
+  "name": "zeal",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "setup": "yarn install && npx pod-install"
   },
   "dependencies": {
     "react": "18.2.0",
