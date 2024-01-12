@@ -1,12 +1,13 @@
 import React, {FC} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
+import {Test} from '../styles/icons';
 
 type TestingProps = {};
 
 const Testing: FC<TestingProps> = props => {
   return (
     <View style={styles.container}>
-      <Text>New Screen Testing </Text>
+      <Test />
     </View>
   );
 };
