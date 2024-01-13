@@ -9,13 +9,17 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import styles from './Layout.style';
 import LayoutProps from './Layout.type';
 import colors from '../../../styles/colors';
+import Header from './Header';
 
 const behavior = Platform.OS === 'ios' ? 'padding' : 'height';
 
-const Layout: FC<LayoutProps> = ({children, Header, style, onRefresh}) => {
+const Layout: FC<LayoutProps> = ({
+  children,
+  HeaderVisablity = false,
+  style,
+  onRefresh,
+}) => {
   const {top} = useSafeAreaInsets();
-
-  const HeaderComponent = () => (Header ? <Header /> : <></>);
 
   return (
     <KeyboardAvoidingView
@@ -32,7 +36,7 @@ const Layout: FC<LayoutProps> = ({children, Header, style, onRefresh}) => {
         }
         nestedScrollEnabled
         contentContainerStyle={[styles.content, style]}>
-        <HeaderComponent />
+        {HeaderVisablity && <Header />}
         {children}
       </ScrollView>
     </KeyboardAvoidingView>

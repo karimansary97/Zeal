@@ -6,7 +6,7 @@ type DetailsProps = {};
 
 const Details: FC<DetailsProps> = () => {
   return (
-    <Layout style={styles.container}>
+    <Layout style={styles.container} HeaderVisablity>
       <Text>New Screen Details </Text>
     </Layout>
   );
