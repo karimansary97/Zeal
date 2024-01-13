@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import Layout from '../../../components/UIELements/Layout';
 import unit from '../../../styles/unit';
@@ -12,21 +12,31 @@ import appQueryClient from '../../../config/appQueryClient';
 import {errorNotify} from '../../../helpers/notifers';
 import useNavigation from '../../../hooks/useNavigation';
 import routes from '../../../navigation/routes';
+import ErrorText from '../../../components/UIELements/ErrorText';
 
 type SignInProps = {};
 
 const SignIn: FC<SignInProps> = () => {
   const {navigate} = useNavigation();
-  const {reset, ...methods} = useForm();
-  const {mutate, isPending} = useMutationQuery({
+  const {...methods} = useForm();
+  const [hasErrorText, setErrorText] = useState(false);
+  const {
+    mutate,
+    error: errorMessage,
+    isPending,
+  } = useMutationQuery({
     endPoint: EndPoints.SignIn,
     options: {
       onSuccess: (data: any) => {
         appQueryClient.setQueryData(['User'], data?.data);
         appQueryClient.setQueryData(['Jwt'], data?.data?.token);
       },
-      onError: () => {
-        errorNotify();
+      onError: error => {
+        if (error?.response?.status !== 401) {
+          errorNotify();
+          return;
+        }
+        setErrorText(true);
       },
     },
   });
@@ -35,6 +45,8 @@ const SignIn: FC<SignInProps> = () => {
     mutate(dataSent);
   };
   const handleRegisterText = () => {
+    methods.reset();
+    setErrorText(false);
     navigate(routes.SignUp);
   };
   return (
@@ -42,7 +54,7 @@ const SignIn: FC<SignInProps> = () => {
       <Text size="xxlarge" bold>
         Welcome back! Glad to see you, Again!
       </Text>
-      <FormProvider reset={reset} {...methods}>
+      <FormProvider {...methods}>
         <TextInputField
           name="email"
           keyboardType="email-address"
@@ -63,6 +75,9 @@ const SignIn: FC<SignInProps> = () => {
             required: 'Please Enter Your Password ',
           }}
         />
+        {hasErrorText && (
+          <ErrorText message={errorMessage?.response?.data?.error} />
+        )}
         <Button
           text="LogIn"
           loading={isPending}

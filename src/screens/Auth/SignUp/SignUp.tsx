@@ -25,7 +25,7 @@ type SubmitData = {
 const SignUp: FC<SignUpProps> = () => {
   const {goBack} = useNavigation();
 
-  const {reset, ...methods} = useForm<SubmitData>();
+  const {...methods} = useForm<SubmitData>();
   const [hasErrorText, setErrorText] = useState(false);
 
   const {
@@ -38,7 +38,7 @@ const SignUp: FC<SignUpProps> = () => {
       onSuccess: (data: any) => {
         appQueryClient.setQueryData(['User'], data?.data);
         appQueryClient.setQueryData(['Jwt'], data?.data?.token);
-        reset();
+        methods.reset();
       },
       onError: error => {
         if (error?.response?.status !== 400) {
@@ -62,7 +62,7 @@ const SignUp: FC<SignUpProps> = () => {
       <Text size="xxlarge" bold>
         Welcome ! Sign up your new account now.
       </Text>
-      <FormProvider reset={reset} {...methods}>
+      <FormProvider {...methods}>
         <TextInputField
           name="name"
           placeholder="Enter your name"
