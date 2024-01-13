@@ -8,4 +8,7 @@ export default StyleSheet.create({
     backgroundColor: colors.defaultBackGround,
     paddingHorizontal: 20 * unit,
   },
+  content: {
+    flexGrow: 1,
+  },
 });
