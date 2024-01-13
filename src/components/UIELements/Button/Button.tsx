@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react';
+import {FC} from 'react';
 import {
   ActivityIndicator,
   TouchableOpacity,
@@ -20,7 +20,6 @@ type ButtonType = {
 
 const Button: FC<ButtonType & TouchableOpacityProps> = ({
   text,
-  fullWidth = true,
   loading = false,
   color = 'primary',
   size = 'lg',

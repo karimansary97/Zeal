@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import {FC} from 'react';
 import {Text as NativeText, TextProps} from 'react-native';
 import {TextType} from './textTypes';
 import styles from './Text.style';

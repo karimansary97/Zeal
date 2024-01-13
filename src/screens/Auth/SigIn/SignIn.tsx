@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import {FC} from 'react';
 import {StyleSheet} from 'react-native';
 import Layout from '../../../components/UIELements/Layout';
 import unit from '../../../styles/unit';
@@ -15,14 +15,15 @@ import routes from '../../../navigation/routes';
 
 type SignInProps = {};
 
-const SignIn: FC<SignInProps> = props => {
+const SignIn: FC<SignInProps> = () => {
   const {navigate} = useNavigation();
   const {reset, ...methods} = useForm();
-  const {mutate, error, isPending} = useMutationQuery({
+  const {mutate, isPending} = useMutationQuery({
     endPoint: EndPoints.SignIn,
     options: {
-      onSuccess: data => {
-        appQueryClient.setQueryData(['token'], data);
+      onSuccess: (data: any) => {
+        appQueryClient.setQueryData(['User'], data?.data);
+        appQueryClient.setQueryData(['Jwt'], data?.data?.token);
       },
       onError: () => {
         errorNotify();
