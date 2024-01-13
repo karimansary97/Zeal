@@ -28,7 +28,7 @@ const SignIn: FC<SignInProps> = () => {
     endPoint: EndPoints.SignIn,
     options: {
       onSuccess: (data: any) => {
-        appQueryClient.setQueryData(['User'], data?.data);
+        appQueryClient.setQueryData(['userInfo'], data?.data?.admin);
         appQueryClient.setQueryData(['Jwt'], data?.data?.token);
       },
       onError: error => {

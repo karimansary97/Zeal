@@ -6,12 +6,12 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 axiosInstance.interceptors.request.use(config => {
-  const jwt = appQueryClient.getQueryData(['jwt']);
-
-  config.headers.set('Accept-Language', 'ar');
+  const jwt = appQueryClient.getQueryData(['Jwt']);
   if (jwt) {
-    config.headers.token(`${jwt}`);
+    config.headers['Content-Type'] = 'application/json';
+    config.headers['token'] = jwt;
   }
+
   return config;
 });
 export default axiosInstance;

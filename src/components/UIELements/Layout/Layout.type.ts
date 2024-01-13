@@ -7,6 +7,7 @@ type LayoutProps = {
   children?: ReactNode;
   Header?: FC;
   style?: ViewStyle;
+  onRefresh?: () => void;
 };
 
 export default LayoutProps;
