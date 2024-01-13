@@ -25,7 +25,10 @@
     "react-native-reanimated": "^3.6.1",
     "react-native-safe-area-context": "^4.8.2",
     "react-native-screens": "^3.29.0",
-    "react-native-svg": "^14.1.0"
+    "react-native-svg": "^14.1.0",
+    "react-hook-form": "^7.41.3",
+    "react-native-notifier": "^1.9.0"
+
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
