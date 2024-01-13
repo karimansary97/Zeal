@@ -6,12 +6,14 @@ import SignUp from '../screens/Auth/SignUp';
 import Home from '../screens/Home/Home';
 import useJwt from '../hooks/useJwt';
 import RNBootSplash from 'react-native-bootsplash';
+import useUser from '../hooks/useUser';
 
 type MainNavigationProps = {};
 const Stack = createStackNavigator();
 
 const MainNavigation: FC<MainNavigationProps> = () => {
   const {data} = useJwt();
+  useUser();
 
   useEffect(() => {
     if (data !== undefined) {
@@ -25,12 +27,14 @@ const MainNavigation: FC<MainNavigationProps> = () => {
         headerShown: false,
       }}>
       {data ? (
-        <Stack.Screen name={routes.Home} component={Home} />
+        <Stack.Group>
+          <Stack.Screen name={routes.Home} component={Home} />
+        </Stack.Group>
       ) : (
-        <>
+        <Stack.Group>
           <Stack.Screen name={routes.SignIn} component={SignIn} />
           <Stack.Screen name={routes.SignUp} component={SignUp} />
-        </>
+        </Stack.Group>
       )}
     </Stack.Navigator>
   );
