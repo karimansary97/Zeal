@@ -11,6 +11,7 @@ import EndPoints from '../../../apis/EndPoints';
 import appQueryClient from '../../../config/appQueryClient';
 import {errorNotify} from '../../../helpers/notifers';
 import ErrorText from '../../../components/UIELements/ErrorText';
+import useNavigation from '../../../hooks/useNavigation';
 
 type SignUpProps = {};
 
@@ -22,6 +23,8 @@ type SubmitData = {
 };
 
 const SignUp: FC<SignUpProps> = () => {
+  const {goBack} = useNavigation();
+
   const {reset, ...methods} = useForm<SubmitData>();
   const [hasErrorText, setErrorText] = useState(false);
 
@@ -49,6 +52,9 @@ const SignUp: FC<SignUpProps> = () => {
 
   const onSubmit = (dataSent: SubmitData) => {
     mutate(dataSent);
+  };
+  const handleLogInText = () => {
+    goBack();
   };
 
   return (
@@ -123,6 +129,12 @@ const SignUp: FC<SignUpProps> = () => {
           disabled={isPending}
           onPress={methods.handleSubmit(onSubmit)}
         />
+        <Text size="normal">
+          have an account?{' '}
+          <Text bold color="secondary" size="normal" onPress={handleLogInText}>
+            LogIn Now
+          </Text>
+        </Text>
       </FormProvider>
     </Layout>
   );

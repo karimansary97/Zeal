@@ -1,13 +1,12 @@
 import {FC} from 'react';
 import {StyleSheet, Text} from 'react-native';
 import Layout from '../../components/UIELements/Layout';
-import useUser from '../../hooks/useUser';
+import appQueryClient from '../../config/appQueryClient';
 
 type HomeProps = {};
 
 const Home: FC<HomeProps> = () => {
-  const x = useUser();
-  console.log('🚀 ~ x:', x);
+  // appQueryClient.clear();
   return (
     <Layout style={styles.container}>
       <Text>New Screen Home </Text>
