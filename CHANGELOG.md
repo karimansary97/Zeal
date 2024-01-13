@@ -1,0 +1,1 @@
+- SignIn [#NewFeature](https://github.com/karimansary97/Zeal/pull/new/SignIn)
