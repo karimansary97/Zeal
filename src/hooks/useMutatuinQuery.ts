@@ -20,7 +20,7 @@ const useMutationQuery = <T>({
   options,
 }: usePostQueryType<T>) => {
   return useMutation({
-    mutationFn: async <T>(data: T): Promise<unknown> => {
+    mutationFn: async (data: T): Promise<unknown> => {
       if (update) {
         return await axiosInstance.put(endPoint, data);
       }

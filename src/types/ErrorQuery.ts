@@ -1,8 +1,8 @@
 type ErrorQuery = {
-  error: {
-    message: string;
+  response: {
+    data: {error?: string} & string;
     status: number;
-    name?: string;
   };
+  message: string;
 };
 export default ErrorQuery;

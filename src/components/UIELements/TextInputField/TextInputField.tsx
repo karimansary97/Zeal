@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import {FC} from 'react';
 import {TextInputProps} from 'react-native';
 import {UseControllerProps} from 'react-hook-form';
 import ControlledInput from './ControlledInput';
