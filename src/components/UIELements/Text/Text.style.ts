@@ -19,6 +19,7 @@ export default StyleSheet.create({
   secondary: {
     color: colors.secondary,
   },
+  white: {color: colors.white},
   small: {
     fontSize: 12 * unit,
     lineHeight: 20 * unit,

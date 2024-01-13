@@ -1,4 +1,4 @@
-export type TextColor = 'primary' | 'secondary';
+export type TextColor = 'primary' | 'secondary' | 'white';
 
 export type size =
   | 'small'
