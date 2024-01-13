@@ -36,7 +36,7 @@ const SignUp: FC<SignUpProps> = () => {
     endPoint: EndPoints.SignUp,
     options: {
       onSuccess: (data: any) => {
-        appQueryClient.setQueryData(['User'], data?.data);
+        appQueryClient.setQueryData(['userInfo'], data?.data?.admin);
         appQueryClient.setQueryData(['Jwt'], data?.data?.token);
         methods.reset();
       },

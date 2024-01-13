@@ -1,9 +1,9 @@
 import {useQuery} from '@tanstack/react-query';
 
 const useUser = () => {
-  return useQuery({
-    queryKey: ['User'],
-    queryFn: () => {},
+  return useQuery<any>({
+    queryKey: ['userInfo'],
+    queryFn: () => '',
     staleTime: Infinity,
     gcTime: Infinity,
   });
