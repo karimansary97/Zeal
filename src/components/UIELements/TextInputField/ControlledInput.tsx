@@ -14,7 +14,7 @@ import {
 import colors from '../../../styles/colors';
 import unit from '../../../styles/unit';
 import ErrorText from '../ErrorText';
-import {PasswordEyeIcon} from '../../../styles/icons';
+import {PasswordEyeIcon, PasswordOpenIcon} from '../../../styles/icons';
 
 interface ControlledInputProps extends UseControllerProps, TextInputProps {
   defaultValue?: string;
@@ -59,7 +59,7 @@ const ControlledInput: FC<ControlledInputProps> = ({
         />
         {password && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            {showPassword ? <PasswordEyeIcon /> : <PasswordEyeIcon />}
+            {showPassword ? <PasswordEyeIcon /> : <PasswordOpenIcon />}
           </TouchableOpacity>
         )}
       </View>
