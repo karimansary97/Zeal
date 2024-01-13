@@ -1,1 +1,1 @@
-export {default as Test} from '../assets/PasswordIcon.svg';
+export {default as PasswordEyeIcon} from '../assets/PasswordIcon.svg';
