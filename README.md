@@ -47,6 +47,7 @@ git clone https://github.com/karimansary97/Zeal.git
 cd your-react-native-app
 
 # Checkout staging
+git checkout staging 
 
 # Install dependencies
 Yarn
