@@ -26,7 +26,7 @@ const Button: FC<ButtonType & TouchableOpacityProps> = ({
   color = 'primary',
   size = 'lg',
   style,
-  indicatorColor = colors.white,
+  indicatorColor = colors.secondary,
   ...props
 }) => {
   const targetStyle = [styles.container, styles[color], styles[size], style];
