@@ -9,7 +9,7 @@ import useMutationQuery from '../../hooks/useMutatuinQuery';
 import EndPoints from '../../apis/EndPoints';
 import appQueryClient from '../../config/appQueryClient';
 import {errorNotify, successNotify} from '../../helpers/notifers';
-import useZustandStore from '../../hooks/useZsutandsStore';
+import useTempLocationStore from '../../hooks/useZsutandsStore';
 
 type LocationCardProps = {
   lat: string;
@@ -19,7 +19,7 @@ type LocationCardProps = {
 };
 
 const LocationCard: FC<LocationCardProps> = ({lat, lng, id, edit}) => {
-  const {removeItem} = useZustandStore();
+  const {removeItem} = useTempLocationStore();
 
   const {mutate, isPending} = useMutationQuery({
     endPoint: `${EndPoints.location}/${id}`,
@@ -28,7 +28,7 @@ const LocationCard: FC<LocationCardProps> = ({lat, lng, id, edit}) => {
       onSuccess: () => {
         successNotify('Your Location remove', 'please Check the locations');
         appQueryClient.refetchQueries({
-          queryKey: ['locations'],
+          queryKey: ['singleUser'],
         });
       },
       onError: () => {

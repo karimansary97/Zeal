@@ -16,7 +16,7 @@ import {errorNotify, successNotify} from '../../helpers/notifers';
 import useRoute from '../../hooks/useRoute';
 import useNavigation from '../../hooks/useNavigation';
 import appQueryClient from '../../config/appQueryClient';
-import useZustandStore from '../../hooks/useZsutandsStore';
+import useTempLocationStore from '../../hooks/useZsutandsStore';
 
 type LocationProps = {};
 
@@ -24,7 +24,7 @@ const Location: FC<LocationProps> = () => {
   const {goBack} = useNavigation();
   const {params} = useRoute();
   const {edit = true, userEmail} = params;
-  const {addItem} = useZustandStore();
+  const {addItem} = useTempLocationStore();
   const {...methods} = useForm();
   const {mutate, isPending} = useMutationQuery({
     endPoint: `${EndPoints.location}/${userEmail}`,
@@ -32,7 +32,7 @@ const Location: FC<LocationProps> = () => {
       onSuccess: () => {
         successNotify('Your Location add', 'please Check the locations');
         appQueryClient.refetchQueries({
-          queryKey: ['locations'],
+          queryKey: ['singleUser', userEmail],
         });
         goBack();
       },

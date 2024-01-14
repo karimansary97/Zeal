@@ -10,6 +10,7 @@ import styles from './Layout.style';
 import LayoutProps from './Layout.type';
 import colors from '../../../styles/colors';
 import Header from './Header';
+import ErrorHappen from '../ErrorHappen';
 
 const behavior = Platform.OS === 'ios' ? 'padding' : 'height';
 
@@ -18,6 +19,7 @@ const Layout: FC<LayoutProps> = ({
   HeaderVisablity = false,
   style,
   scrollEnabled = true,
+  isError = false,
   onRefresh,
 }) => {
   const {top} = useSafeAreaInsets();
@@ -39,7 +41,7 @@ const Layout: FC<LayoutProps> = ({
         nestedScrollEnabled
         contentContainerStyle={[styles.content, style]}>
         {HeaderVisablity && <Header />}
-        {children}
+        {isError ? <ErrorHappen /> : <>{children}</>}
       </ScrollView>
     </KeyboardAvoidingView>
   );
