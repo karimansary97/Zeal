@@ -17,6 +17,7 @@ const Layout: FC<LayoutProps> = ({
   children,
   HeaderVisablity = false,
   style,
+  scrollEnabled = true,
   onRefresh,
 }) => {
   const {top} = useSafeAreaInsets();
@@ -34,6 +35,7 @@ const Layout: FC<LayoutProps> = ({
             colors={[colors.secondary]}
           />
         }
+        scrollEnabled={scrollEnabled}
         nestedScrollEnabled
         contentContainerStyle={[styles.content, style]}>
         {HeaderVisablity && <Header />}

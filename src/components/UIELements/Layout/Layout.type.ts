@@ -6,6 +6,7 @@ type LayoutProps = {
   Content?: FC;
   children?: ReactNode;
   style?: ViewStyle;
+  scrollEnabled?: boolean;
   onRefresh?: () => void;
 };
 
