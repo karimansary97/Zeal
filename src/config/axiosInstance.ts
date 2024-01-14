@@ -1,8 +1,9 @@
 import axios from 'axios';
 import appQueryClient from './appQueryClient';
+import Config from 'react-native-config';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://aw2zxe2ua5.execute-api.us-east-1.amazonaws.com/',
+  baseURL: Config.API_BASE_URL,
   withCredentials: true,
 });
 axiosInstance.interceptors.request.use(config => {
