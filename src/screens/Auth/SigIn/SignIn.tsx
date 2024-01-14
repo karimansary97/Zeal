@@ -3,7 +3,12 @@ import {StyleSheet} from 'react-native';
 import Layout from '../../../components/UIELements/Layout';
 import unit from '../../../styles/unit';
 import Text from '../../../components/UIELements/Text';
-import {FormProvider, SubmitHandler, useForm} from 'react-hook-form';
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
 import TextInputField from '../../../components/UIELements/TextInputField';
 import Button from '../../../components/UIELements/Button/Button';
 import useMutationQuery from '../../../hooks/useMutatuinQuery';
@@ -41,7 +46,7 @@ const SignIn: FC<SignInProps> = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<any> = dataSent => {
+  const onSubmit: SubmitHandler<FieldValues> = dataSent => {
     mutate(dataSent);
   };
   const handleRegisterText = () => {

@@ -6,18 +6,19 @@ import colors from '../../styles/colors';
 import unit from '../../styles/unit';
 
 type DetailsUserCardProps = {
-  name: string;
-  id: number;
+  name?: string;
+  id?: number;
+  email?: string;
 };
 
-const DetailsUserCard: FC<DetailsUserCardProps> = ({name, id}) => {
+const DetailsUserCard: FC<DetailsUserCardProps> = ({name, id, email}) => {
   return (
     <View style={styles.container}>
       <View>
         <Text semiBold size="normal">
           {name} #{id}
         </Text>
-        <Text>Jorem ipsum dolor, consectetur.</Text>
+        <Text>{email}</Text>
       </View>
       <ProfileIcon />
     </View>

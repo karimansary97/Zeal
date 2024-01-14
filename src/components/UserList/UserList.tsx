@@ -1,54 +1,52 @@
 import {FC} from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
-import LocationCard from './LocationCard';
-import Text from '../UIELements/Text';
-import unit from '../../styles/unit';
-import Button from '../UIELements/Button';
-import useNavigation from '../../hooks/useNavigation';
+import UserCard from '../UserCard';
+import {UserDataType} from '../../types/Users.type';
 import routes from '../../navigation/routes';
-import {LocationDataType} from '../../types/Locations.type';
+import useNavigation from '../../hooks/useNavigation';
+import unit from '../../styles/unit';
+import Text from '../UIELements/Text';
+import Button from '../UIELements/Button';
 import ErrorHappen from '../UIELements/ErrorHappen';
 import NoDataFound from '../UIELements/NoDataFound';
 
-type LocationListProps = {
-  locations?: LocationDataType[];
-  userEmail: string;
-  edit?: boolean;
-  isError?: boolean;
+type UserListProps = {
+  users?: UserDataType[];
+  isError: boolean;
 };
 
-const LocationList: FC<LocationListProps> = ({
-  locations,
-  userEmail,
-  edit,
-  isError,
-}) => {
+const UserList: FC<UserListProps> = ({users, isError}) => {
   const {navigate} = useNavigation();
-  const handleAddLocation = () => {
-    navigate(routes.AddLocation, {userEmail, edit});
+
+  const handleonAddUserPress = () => {
+    navigate(routes.AddUser, {edite: false});
   };
+
+  const handleUserCardPress = (item: UserDataType) => () => {
+    navigate(routes.Details, item);
+  };
+
   if (isError) {
     return <ErrorHappen />;
   }
+
   return (
     <View style={styles.container}>
       <View style={styles.subContainer}>
         <Text size="large" bold>
-          Locations
+          {users?.length} Users
         </Text>
-        <Button size="sm" text="Add New Location" onPress={handleAddLocation} />
+        <Button size="sm" text="Add User" onPress={handleonAddUserPress} />
       </View>
-      {locations?.length ? (
+      {users?.length ? (
         <FlatList
-          data={locations}
-          nestedScrollEnabled
+          data={users}
           keyExtractor={item => item?.id + ''}
           renderItem={({item}) => (
-            <LocationCard
-              lat={item?.lat}
-              lng={item?.lng}
-              id={item?.id}
-              edit={edit}
+            <UserCard
+              name={item?.name}
+              onPress={handleUserCardPress(item)}
+              email={item?.email}
             />
           )}
         />
@@ -71,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LocationList;
+export default UserList;

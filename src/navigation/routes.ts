@@ -4,5 +4,6 @@ export default Object.freeze({
   Home: 'Home',
   Details: 'Details',
   EditUser: 'Edit User',
+  AddUser: 'Add User',
   AddLocation: 'Add Location',
 });

@@ -35,6 +35,7 @@ const MainNavigation: FC<MainNavigationProps> = () => {
           <Stack.Screen name={routes.Details} component={Details} />
           <Stack.Screen name={routes.AddLocation} component={Location} />
           <Stack.Screen name={routes.EditUser} component={ManageUser} />
+          <Stack.Screen name={routes.AddUser} component={ManageUser} />
         </Stack.Group>
       ) : (
         <Stack.Group>

@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, memo} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {EditIcon, ProfileIcon, TrashIcon} from '../../styles/icons';
 import colors from '../../styles/colors';
@@ -20,6 +20,7 @@ type UserCardProps = {
 
 const UserCard: FC<UserCardProps> = ({name, onPress, email}) => {
   const {navigate} = useNavigation();
+
   const {mutate, isPending} = useMutationQuery({
     endPoint: `${EndPoints.users}/${email}`,
     deleteData: true,
@@ -35,12 +36,15 @@ const UserCard: FC<UserCardProps> = ({name, onPress, email}) => {
       },
     },
   });
+
   const handleOnDeletePress = () => {
     mutate({});
   };
+
   const handleOnEditPress = () => {
     navigate(routes.EditUser, {email, name, edit: true});
   };
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -81,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserCard;
+export default memo(UserCard);

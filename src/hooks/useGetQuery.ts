@@ -17,6 +17,7 @@ export const useGetQuery = <T>({
       const {data: responseData} = await axiosInstance.get(endPoint);
       return responseData;
     },
+
     ...options,
   });
 };

@@ -3,7 +3,13 @@ import {StyleSheet} from 'react-native';
 import Layout from '../../../components/UIELements/Layout';
 import unit from '../../../styles/unit';
 import Text from '../../../components/UIELements/Text';
-import {FieldValue, FieldValues, FormProvider, useForm} from 'react-hook-form';
+import {
+  FieldValue,
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
 import TextInputField from '../../../components/UIELements/TextInputField';
 import Button from '../../../components/UIELements/Button/Button';
 import useMutationQuery from '../../../hooks/useMutatuinQuery';
@@ -15,24 +21,17 @@ import useNavigation from '../../../hooks/useNavigation';
 
 type SignUpProps = {};
 
-type SubmitData = {
-  email: string;
-  name: string;
-  password: string;
-  passwordrepeat: string;
-};
-
 const SignUp: FC<SignUpProps> = () => {
   const {goBack} = useNavigation();
 
-  const {...methods} = useForm<SubmitData>();
+  const {...methods} = useForm();
   const [hasErrorText, setErrorText] = useState(false);
 
   const {
     mutate,
     error: errorMessage,
     isPending,
-  } = useMutationQuery<SubmitData>({
+  } = useMutationQuery({
     endPoint: EndPoints.SignUp,
     options: {
       onSuccess: (data: any) => {
@@ -50,7 +49,7 @@ const SignUp: FC<SignUpProps> = () => {
     },
   });
 
-  const onSubmit = (dataSent: SubmitData) => {
+  const onSubmit: SubmitHandler<FieldValues> = dataSent => {
     mutate(dataSent);
   };
   const handleLogInText = () => {
