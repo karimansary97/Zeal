@@ -28,7 +28,7 @@ const useMutationQuery = <T>({
         return await axiosInstance.delete(endPoint);
       }
       if (patch) {
-        return await axiosInstance.patch(endPoint);
+        return await axiosInstance.patch(endPoint, data);
       }
       return await axiosInstance.post(endPoint, data);
     },

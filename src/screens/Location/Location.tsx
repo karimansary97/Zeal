@@ -16,12 +16,15 @@ import {errorNotify, successNotify} from '../../helpers/notifers';
 import useRoute from '../../hooks/useRoute';
 import useNavigation from '../../hooks/useNavigation';
 import appQueryClient from '../../config/appQueryClient';
+import useZustandStore from '../../hooks/useZsutandsStore';
 
 type LocationProps = {};
 
 const Location: FC<LocationProps> = () => {
   const {goBack} = useNavigation();
-  const {params: userEmail} = useRoute();
+  const {params} = useRoute();
+  const {edit = true, userEmail} = params;
+  const {addItem} = useZustandStore();
   const {...methods} = useForm();
   const {mutate, isPending} = useMutationQuery({
     endPoint: `${EndPoints.location}/${userEmail}`,
@@ -40,6 +43,10 @@ const Location: FC<LocationProps> = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = dataSent => {
+    if (!edit) {
+      addItem(dataSent);
+      return goBack();
+    }
     mutate(dataSent);
   };
   return (

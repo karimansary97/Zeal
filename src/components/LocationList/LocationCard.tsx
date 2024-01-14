@@ -9,14 +9,18 @@ import useMutationQuery from '../../hooks/useMutatuinQuery';
 import EndPoints from '../../apis/EndPoints';
 import appQueryClient from '../../config/appQueryClient';
 import {errorNotify, successNotify} from '../../helpers/notifers';
+import useZustandStore from '../../hooks/useZsutandsStore';
 
 type LocationCardProps = {
   lat: string;
   lng: string;
   id: number;
+  edit?: boolean;
 };
 
-const LocationCard: FC<LocationCardProps> = ({lat, lng, id}) => {
+const LocationCard: FC<LocationCardProps> = ({lat, lng, id, edit}) => {
+  const {removeItem} = useZustandStore();
+
   const {mutate, isPending} = useMutationQuery({
     endPoint: `${EndPoints.location}/${id}`,
     deleteData: true,
@@ -33,6 +37,9 @@ const LocationCard: FC<LocationCardProps> = ({lat, lng, id}) => {
     },
   });
   const handleDelete = () => {
+    if (!edit) {
+      return removeItem(id);
+    }
     mutate({});
   };
 
