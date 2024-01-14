@@ -32,7 +32,12 @@ const LocationList: FC<LocationListProps> = ({locations, userEmail, edit}) => {
         nestedScrollEnabled
         keyExtractor={item => item?.id + ''}
         renderItem={({item}) => (
-          <LocationCard lat={item?.lat} lng={item?.lng} id={item?.id} />
+          <LocationCard
+            lat={item?.lat}
+            lng={item?.lng}
+            id={item?.id}
+            edit={edit}
+          />
         )}
       />
     </View>

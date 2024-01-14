@@ -38,7 +38,7 @@ const Home: FC<HomeProps> = () => {
       </Text>
       <View style={styles.subContainer}>
         <Text size="large" bold>
-          Locations
+          Users #{data?.users?.length}
         </Text>
         <Button size="sm" text="Add User" onPress={handleonAddUserPress} />
       </View>

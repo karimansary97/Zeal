@@ -1,15 +1,15 @@
-import {useQuery, UseQueryOptions} from '@tanstack/react-query';
+import {useQuery} from '@tanstack/react-query';
 import axiosInstance from '../config/axiosInstance';
 
 type useGetQueryType = {
   queryKey: string[];
   endPoint: string;
-  options?: UseQueryOptions<any>;
+  enabled?: boolean;
 };
 export const useGetQuery = <T>({
   queryKey,
   endPoint,
-  options,
+  ...options
 }: useGetQueryType) => {
   return useQuery<T, Error>({
     queryKey,

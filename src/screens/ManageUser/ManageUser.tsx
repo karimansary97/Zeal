@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import Layout from '../../components/UIELements/Layout';
 import TextInputField from '../../components/UIELements/TextInputField';
@@ -19,22 +19,27 @@ import {errorNotify, successNotify} from '../../helpers/notifers';
 import useMutationQuery from '../../hooks/useMutatuinQuery';
 import useNavigation from '../../hooks/useNavigation';
 import appQueryClient from '../../config/appQueryClient';
+import useZustandStore from '../../hooks/useZsutandsStore';
 
 type ManageUserProps = {};
 
 const ManageUser: FC<ManageUserProps> = () => {
   const {goBack} = useNavigation();
   const {params} = useRoute();
+  const {items, resetState} = useZustandStore();
   const {email = '', name = '', edit = false} = params ?? {};
   const [nameText, setNameText] = useState(name);
   const [emailText, setEmailText] = useState(email);
   const {...methods} = useForm();
+
   const {data: locationData} = useGetQuery<LocationsType>({
     queryKey: ['locations', email],
     endPoint: `${EndPoints.location}/${email}`,
+    enabled: edit,
   });
+
   const {mutate, isPending} = useMutationQuery({
-    endPoint: `${EndPoints.users}/${email}`,
+    endPoint: `${EndPoints.users}${edit ? '/' + email : ''}`,
     patch: edit,
     options: {
       onSuccess: () => {
@@ -50,9 +55,15 @@ const ManageUser: FC<ManageUserProps> = () => {
       },
     },
   });
+
   const onSubmit: SubmitHandler<FieldValues> = dataSent => {
-    mutate(dataSent);
+    mutate({...dataSent, ...(!edit ? {locations: items} : {})});
   };
+  useEffect(() => {
+    return () => {
+      resetState();
+    };
+  }, [resetState]);
 
   return (
     <Layout style={styles.container} HeaderVisablity scrollEnabled={false}>
@@ -102,7 +113,7 @@ const ManageUser: FC<ManageUserProps> = () => {
           style={styles.textInputField}
         />
         <LocationList
-          locations={locationData?.locations}
+          locations={edit ? locationData?.locations : items}
           userEmail={email}
           edit={edit}
         />
