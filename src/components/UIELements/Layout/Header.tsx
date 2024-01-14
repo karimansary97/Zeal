@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     columnGap: 22 * unit,
+    alignSelf: 'flex-start',
   },
 });
 
