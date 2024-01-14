@@ -21,7 +21,8 @@ type LocationProps = {};
 
 const Location: FC<LocationProps> = () => {
   const {goBack} = useNavigation();
-  const {params: userEmail} = useRoute();
+  const {params} = useRoute();
+  const {edit, userEmail} = params;
   const {...methods} = useForm();
   const {mutate, isPending} = useMutationQuery({
     endPoint: `${EndPoints.location}/${userEmail}`,
@@ -40,6 +41,9 @@ const Location: FC<LocationProps> = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = dataSent => {
+    if (!edit) {
+      return goBack();
+    }
     mutate(dataSent);
   };
   return (

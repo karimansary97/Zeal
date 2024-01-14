@@ -11,12 +11,13 @@ import {LocationDataType} from '../../types/Locations.type';
 type LocationListProps = {
   locations?: LocationDataType[];
   userEmail: string;
+  edit?: boolean;
 };
 
-const LocationList: FC<LocationListProps> = ({locations, userEmail}) => {
+const LocationList: FC<LocationListProps> = ({locations, userEmail, edit}) => {
   const {navigate} = useNavigation();
   const handleAddLocation = () => {
-    navigate(routes.AddLocation, userEmail);
+    navigate(routes.AddLocation, {userEmail, edit});
   };
   return (
     <View style={styles.container}>

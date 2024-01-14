@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {FlatList, StyleSheet} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import Layout from '../../components/UIELements/Layout';
 import {useGetQuery} from '../../hooks/useGetQuery';
 import EndPoints from '../../apis/EndPoints';
@@ -11,6 +11,8 @@ import ErrorHappen from '../../components/UIELements/ErrorHappen';
 import UsersType, {UserDataType} from '../../types/Users.type';
 import useNavigation from '../../hooks/useNavigation';
 import routes from '../../navigation/routes';
+import unit from '../../styles/unit';
+import Button from '../../components/UIELements/Button';
 
 type HomeProps = {};
 
@@ -25,13 +27,21 @@ const Home: FC<HomeProps> = () => {
   const handleUserCardPress = (item: UserDataType) => () => {
     navigate(routes.Details, item);
   };
+  const handleonAddUserPress = () => {
+    navigate(routes.EditUser, {edite: false});
+  };
 
   return (
     <Layout style={styles.container} onRefresh={refetch}>
       <Text size="xlarge" bold>
         Hello , {user?.name}
       </Text>
-
+      <View style={styles.subContainer}>
+        <Text size="large" bold>
+          Locations
+        </Text>
+        <Button size="sm" text="Add User" onPress={handleonAddUserPress} />
+      </View>
       {!isLoading ? (
         <>
           {!isError ? (
@@ -42,6 +52,7 @@ const Home: FC<HomeProps> = () => {
                 <UserCard
                   name={item?.name}
                   onPress={handleUserCardPress(item)}
+                  email={item?.email}
                 />
               )}
             />
@@ -59,6 +70,12 @@ const Home: FC<HomeProps> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  subContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 12 * unit,
+    justifyContent: 'space-between',
   },
 });
 
