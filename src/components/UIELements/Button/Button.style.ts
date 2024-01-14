@@ -29,7 +29,7 @@ export default StyleSheet.create({
   },
   sm: {
     height: 40 * unit,
-    width: 200 * unit,
+    width: 160 * unit,
     paddingHorizontal: 12 * unit,
   },
   text: {
