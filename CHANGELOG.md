@@ -9,3 +9,5 @@
 - Add MangeUserScreen and init stateMangment [#NewFeature](https://github.com/karimansary97/Zeal/pull/new/EditUser)
 
 - fixlint Issues and enhance the quality of code ... use singleUserEndpoint instead of locations [#Enhancment](https://github.com/karimansary97/Zeal/pull/new/enhancment)
+
+- Add LogOut[#NewFeature](https://github.com/karimansary97/Zeal/pull/new/LogOut)
