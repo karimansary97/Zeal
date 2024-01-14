@@ -8,6 +8,7 @@ import useJwt from '../hooks/useJwt';
 import RNBootSplash from 'react-native-bootsplash';
 import useUser from '../hooks/useUser';
 import Details from '../screens/Details';
+import Location from '../screens/Location';
 
 type MainNavigationProps = {};
 const Stack = createStackNavigator();
@@ -31,6 +32,7 @@ const MainNavigation: FC<MainNavigationProps> = () => {
         <Stack.Group>
           <Stack.Screen name={routes.Home} component={Home} />
           <Stack.Screen name={routes.Details} component={Details} />
+          <Stack.Screen name={routes.AddLocation} component={Location} />
         </Stack.Group>
       ) : (
         <Stack.Group>

@@ -10,3 +10,13 @@ export const errorNotify = () => {
     },
   });
 };
+export const successNotify = (title: string = '', description: string = '') => {
+  Notifier.showNotification({
+    title: title,
+    description: description,
+    Component: NotifierComponents.Alert,
+    componentProps: {
+      alertType: 'success',
+    },
+  });
+};

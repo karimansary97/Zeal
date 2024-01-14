@@ -5,7 +5,6 @@ type LayoutProps = {
   HeaderVisablity?: boolean;
   Content?: FC;
   children?: ReactNode;
-  Header?: FC;
   style?: ViewStyle;
   onRefresh?: () => void;
 };

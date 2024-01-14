@@ -1,6 +1,6 @@
 import {RouteProp, useRoute as useNativeRoute} from '@react-navigation/native';
 
-type RouteType = RouteProp<any>;
+type RouteType = RouteProp<{}>;
 
 const useRoute = () => {
   return useNativeRoute<RouteType>();
